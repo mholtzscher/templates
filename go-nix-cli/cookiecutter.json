@@ -1,0 +1,17 @@
+{
+    "project_name": "My CLI Tool",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-').replace('_', '-') }}",
+    "project_description": "A Go CLI tool built with Nix",
+    "github_owner": "username",
+    "github_repo": "{{ cookiecutter.project_slug }}",
+    "module_path": "github.com/{{ cookiecutter.github_owner }}/{{ cookiecutter.github_repo }}",
+    "author_name": "Your Name",
+    "author_email": "your.email@example.com",
+    "license": ["MIT", "Apache-2.0", "BSD-3-Clause", "GPL-3.0", "Proprietary"],
+    "use_cgo": ["no", "yes"],
+    "use_homebrew": ["yes", "no"],
+    "go_version": "1.25",
+    "_copy_without_render": [
+        "test/testscript/scripts/*.txtar"
+    ]
+}

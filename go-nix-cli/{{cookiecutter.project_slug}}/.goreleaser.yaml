@@ -1,0 +1,63 @@
+version: 2
+
+project_name: {{ cookiecutter.project_slug }}
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - id: {{ cookiecutter.project_slug }}
+    main: .
+    binary: {{ cookiecutter.project_slug }}
+    ldflags:
+      - -s -w
+      - -X {{ cookiecutter.module_path }}/cmd.Version={{.Version}}
+    env:
+      - CGO_ENABLED={% if cookiecutter.use_cgo == "yes" %}1{% else %}0{% endif %}
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - id: default
+    formats:
+      - tar.gz
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- .Version }}_
+      {{- .Os }}_
+      {{- .Arch }}
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  use: github-native
+{% if cookiecutter.use_homebrew == "yes" %}
+brews:
+  - name: {{ cookiecutter.project_slug }}
+    repository:
+      owner: {{ cookiecutter.github_owner }}
+      name: homebrew-tap
+      token: "{{ .Env.PAT }}"
+    directory: Formula
+    homepage: "https://github.com/{{ cookiecutter.github_owner }}/{{ cookiecutter.github_repo }}"
+    description: "{{ cookiecutter.project_description }}"
+    license: "{{ cookiecutter.license }}"
+    install: |
+      bin.install "{{ cookiecutter.project_slug }}"
+    test: |
+      system "#{bin}/{{ cookiecutter.project_slug }}", "--version"
+{% endif %}
+
+release:
+  github:
+    owner: {{ cookiecutter.github_owner }}
+    name: {{ cookiecutter.github_repo }}
+  prerelease: auto
+  name_template: "v{{.Version}}"
