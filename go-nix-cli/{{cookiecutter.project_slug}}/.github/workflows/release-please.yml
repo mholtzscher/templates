@@ -14,8 +14,8 @@ jobs:
     name: Release Please
     runs-on: ubuntu-latest
     outputs:
-      release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_created: {% raw %}${{ steps.release.outputs.release_created }}{% endraw %}
+      tag_name: {% raw %}${{ steps.release.outputs.tag_name }}{% endraw %}
     steps:
       - name: Run release-please
         id: release
@@ -28,7 +28,7 @@ jobs:
     name: GoReleaser
     runs-on: macos-latest
     needs: release-please
-    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    if: {% raw %}${{ needs.release-please.outputs.release_created == 'true' }}{% endraw %}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -47,6 +47,6 @@ jobs:
           version: "~> v2"
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-{% if cookiecutter.use_homebrew == "yes" %}          PAT: ${{ secrets.PAT }}
+          GITHUB_TOKEN: {% raw %}${{ secrets.GITHUB_TOKEN }}{% endraw %}
+{% if cookiecutter.use_homebrew == "yes" %}          PAT: {% raw %}${{ secrets.PAT }}{% endraw %}
 {% endif %}
