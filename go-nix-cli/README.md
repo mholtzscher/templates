@@ -21,11 +21,11 @@ A [Cookiecutter](https://cookiecutter.readthedocs.io/) template for Go CLI proje
 # Install cookiecutter
 pip install cookiecutter
 
-# Create a new project
-cookiecutter /home/michael/code/templates/cookiecutter-go-nix-cli
+# Create a new project (local path)
+cookiecutter /path/to/templates/go-nix-cli
 
-# Or from a git repo
-cookiecutter https://github.com/yourusername/cookiecutter-go-nix-cli
+# Or from git repo (using --directory flag)
+cookiecutter https://github.com/mholtzscher/templates.git --directory=go-nix-cli
 ```
 
 ### Using cruft (for template updates)
@@ -34,8 +34,11 @@ cookiecutter https://github.com/yourusername/cookiecutter-go-nix-cli
 # Install cruft
 pip install cruft
 
-# Create a new project
-cruft create /home/michael/code/templates/cookiecutter-go-nix-cli
+# Create a new project (local path)
+cruft create /path/to/templates/go-nix-cli
+
+# Or from git repo (using --directory flag)
+cruft create https://github.com/mholtzscher/templates.git --directory=go-nix-cli
 
 # Check for template updates
 cruft check

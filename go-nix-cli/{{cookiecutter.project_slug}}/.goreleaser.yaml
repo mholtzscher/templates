@@ -13,7 +13,7 @@ builds:
     binary: {{ cookiecutter.project_slug }}
     ldflags:
       - -s -w
-      - -X {{ cookiecutter.module_path }}/cmd.Version={{.Version}}
+      - -X {{ cookiecutter.module_path }}/cmd.Version={% raw %}{{.Version}}{% endraw %}
     env:
       - CGO_ENABLED={% if cookiecutter.use_cgo == "yes" %}1{% else %}0{% endif %}
     goos:
@@ -28,10 +28,10 @@ archives:
     formats:
       - tar.gz
     name_template: >-
-      {{ .ProjectName }}_
+      {% raw %}{{ .ProjectName }}_
       {{- .Version }}_
       {{- .Os }}_
-      {{- .Arch }}
+      {{- .Arch }}{% endraw %}
 
 checksum:
   name_template: "checksums.txt"
@@ -44,7 +44,7 @@ brews:
     repository:
       owner: {{ cookiecutter.github_owner }}
       name: homebrew-tap
-      token: "{{ .Env.PAT }}"
+      token: "{% raw %}{{ .Env.PAT }}{% endraw %}"
     directory: Formula
     homepage: "https://github.com/{{ cookiecutter.github_owner }}/{{ cookiecutter.github_repo }}"
     description: "{{ cookiecutter.project_description }}"
@@ -60,4 +60,4 @@ release:
     owner: {{ cookiecutter.github_owner }}
     name: {{ cookiecutter.github_repo }}
   prerelease: auto
-  name_template: "v{{.Version}}"
+  name_template: "v{% raw %}{{.Version}}{% endraw %}"
