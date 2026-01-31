@@ -15,7 +15,7 @@ build-release:
 
 # Run the binary with arguments (use `just -- run <args>` for flags)
 run *ARGS:
-    go run . {{ARGS}}
+    go run . {% raw %}{{ARGS}}{% endraw %}
 
 # Run all tests
 test:
@@ -27,11 +27,11 @@ test-verbose:
 
 # Run a specific test by name
 test-run NAME:
-    go test -run {{NAME}} ./...
+    go test -run {% raw %}{{NAME}}{% endraw %} ./...
 
 # Run tests for a specific package
 test-pkg PKG:
-    go test ./{{PKG}}
+    go test ./{% raw %}{{PKG}}{% endraw %}
 
 # Format code
 fmt:
@@ -72,4 +72,4 @@ update:
 
 # Run with nix
 nix-run *ARGS:
-    nix run -- {{ARGS}}
+    nix run -- {% raw %}{{ARGS}}{% endraw %}
