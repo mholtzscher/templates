@@ -37,6 +37,11 @@ just check                     # run all checks (fmt, vet, lint, test)
 just tidy                      # go mod tidy
 just update-deps               # update dependencies and gomod2nix.toml
 
+# Template Management
+just cruft-check              # validate template consistency
+just cruft-diff               # show template differences
+just cruft-update             # update to latest template
+
 # Nix build/run
 nix build                      # build package
 nix run                        # run package

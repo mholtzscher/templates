@@ -74,6 +74,7 @@
             pkgs.gotools
             pkgs.gomod2nix
             pkgs.just
+            pkgs.cruft
           ]
           ++ buildInputs
           ++ darwinBuildInputs;
