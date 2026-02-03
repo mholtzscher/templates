@@ -11,6 +11,8 @@
     "use_cgo": ["no", "yes"],
     "use_homebrew": ["yes", "no"],
     "go_version": "1.25",
+    "_template": "https://github.com/mholtzscher/templates.git",
+    "_commit": "{{ cookiecutter._commit | default('unknown') }}",
     "_copy_without_render": [
         "test/testscript/scripts/*.txtar"
     ]
