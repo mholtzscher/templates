@@ -19,6 +19,15 @@
   },
   "directory": "go-nix-cli",
   "skip": [
+    ".github/.release-please-manifest.json",
+    "CHANGELOG.md",
+    "README.md",
+    ".goreleaser.yaml",
+    "cmd",
+    "internal",
+    "test",
+    "main.go",
+    "go.mod",
     "go.sum",
     "gomod2nix.toml",
     "flake.lock"
