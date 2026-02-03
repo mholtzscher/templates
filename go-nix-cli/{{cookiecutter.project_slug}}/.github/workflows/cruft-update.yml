@@ -17,22 +17,6 @@ jobs:
   update:
     name: Update
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - add_paths: .
-            body: |
-              Applies the latest upstream template changes via Cruft.
-            branch: cruft/update
-            commit_message: "chore: apply cruft update"
-            title: "Cruft: apply template updates"
-          - add_paths: .cruft.json
-            body: |
-              Updates .cruft.json to the latest template revision (rejecting the update in this repo).
-            branch: cruft/reject
-            commit_message: "chore: reject cruft update"
-            title: "Cruft: reject template updates"
 
     steps:
       - name: Checkout
@@ -84,12 +68,12 @@ jobs:
         with:
           token: '{% raw %}${{ secrets.PAT || vars.PAT || github.token }}{% endraw %}'
           base: '{% raw %}${{ github.event.repository.default_branch }}{% endraw %}'
-          branch: '{% raw %}${{ matrix.branch }}{% endraw %}'
-          title: '{% raw %}${{ matrix.title }}{% endraw %}'
+          branch: cruft/update
+          title: "Cruft: apply template updates"
           body: |
-            {% raw %}${{ matrix.body }}{% endraw %}
-          commit-message: '{% raw %}${{ matrix.commit_message }}{% endraw %}'
+            Applies the latest upstream template changes via Cruft.
+          commit-message: "chore: apply cruft update"
           add-paths: |
-            {% raw %}${{ matrix.add_paths }}{% endraw %}
+            .
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
