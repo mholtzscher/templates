@@ -17,7 +17,7 @@
       "go_version": "{{ cookiecutter.go_version }}"
     }
   },
-  "directory": "{{ cookiecutter.project_slug }}",
+  "directory": "go-nix-cli",
   "skip": [
     "go.sum",
     "gomod2nix.toml",
