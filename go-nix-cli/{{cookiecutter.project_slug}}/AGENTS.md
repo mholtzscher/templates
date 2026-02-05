@@ -23,12 +23,10 @@ just build-release             # release build
 # Run
 just run <args>                # run locally
 
-{% if cookiecutter.use_sqlc == "yes" %}
-# Generate
+{% if cookiecutter.use_sqlc == "yes" %}# Generate
 just generate                  # run sqlc code generation
 
-{% endif %}
-# Test
+{% endif %}# Test
 just test                      # all tests
 just test-verbose              # verbose test output
 
@@ -36,11 +34,7 @@ just test-verbose              # verbose test output
 just fmt                       # format code
 just vet                       # static analysis
 just lint                      # comprehensive linting (golangci-lint)
-{% if cookiecutter.use_sqlc == "yes" %}
-just check                     # run all checks (generate, fmt, vet, lint, test)
-{% else %}
-just check                     # run all checks (fmt, vet, lint, test)
-{% endif %}
+just check                     # run all checks ({% if cookiecutter.use_sqlc == "yes" %}generate, {% endif %}fmt, vet, lint, test)
 
 # Dependencies
 just tidy                      # go mod tidy

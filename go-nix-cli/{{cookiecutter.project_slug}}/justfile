@@ -45,19 +45,12 @@ vet:
 lint:
     golangci-lint run
 
-{% if cookiecutter.use_sqlc == "yes" %}
-# Generate code (sqlc)
+{% if cookiecutter.use_sqlc == "yes" %}# Generate code (sqlc)
 generate:
     sqlc generate
-{% endif %}
 
-{% if cookiecutter.use_sqlc == "yes" %}
-# Run all checks (generate, format, vet, lint, test, tidy, gomod2nix)
-check: generate fmt vet lint test tidy gomod2nix
-{% else %}
-# Run all checks (format, vet, lint, test, tidy, gomod2nix)
-check: fmt vet lint test tidy gomod2nix
-{% endif %}
+{% endif %}# Run all checks ({% if cookiecutter.use_sqlc == "yes" %}generate, {% endif %}format, vet, lint, test, tidy, gomod2nix)
+check:{% if cookiecutter.use_sqlc == "yes" %} generate{% endif %} fmt vet lint test tidy gomod2nix
 
 # Update Go dependencies
 update-deps:

@@ -74,10 +74,8 @@
             pkgs.golangci-lint
             pkgs.gotools
             pkgs.gomod2nix
-{% if cookiecutter.use_sqlc == "yes" %}
-            pkgs.sqlc
-{% endif %}
-            pkgs.just
+{% if cookiecutter.use_sqlc == "yes" %}            pkgs.sqlc
+{% endif %}            pkgs.just
             pkgs.cruft
           ]
           ++ buildInputs
@@ -91,10 +89,8 @@
           buildInputs = [
             pkgs.go_{{ cookiecutter.go_version | replace('.', '_') }}
             pkgs.golangci-lint
-{% if cookiecutter.use_sqlc == "yes" %}
-            pkgs.sqlc
-{% endif %}
-            pkgs.just
+{% if cookiecutter.use_sqlc == "yes" %}            pkgs.sqlc
+{% endif %}            pkgs.just
           ]
           ++ buildInputs
           ++ darwinBuildInputs;

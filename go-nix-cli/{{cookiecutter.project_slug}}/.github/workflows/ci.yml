@@ -41,19 +41,12 @@ jobs:
       - name: Install just
         uses: extractions/setup-just@v2
 
-{% if cookiecutter.use_sqlc == "yes" %}
-      - name: Set up sqlc
+{% if cookiecutter.use_sqlc == "yes" %}      - name: Set up sqlc
         uses: sqlc-dev/setup-sqlc@v4
         with:
           sqlc-version: "1.30.0"
-{% endif %}
-
-      - name: Run cruft check
+{% endif %}      - name: Run cruft check
         run: cruft check
 
       - name: Run checks
-{% if cookiecutter.use_sqlc == "yes" %}
-        run: just generate fmt vet lint test tidy
-{% else %}
-        run: just fmt vet lint test tidy
-{% endif %}
+        run: just{% if cookiecutter.use_sqlc == "yes" %} generate{% endif %} fmt vet lint test tidy
