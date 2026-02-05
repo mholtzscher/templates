@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Test script for cookiecutter template - runs with pre-filled values
 
 set -e
@@ -22,6 +22,7 @@ cookiecutter go-nix-cli \
   license="MIT" \
   use_cgo="no" \
   use_homebrew="yes" \
+  use_sqlc="no" \
   go_version="1.25"
 
 echo ""

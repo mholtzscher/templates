@@ -14,6 +14,7 @@
       "license": "{{ cookiecutter.license }}",
       "use_cgo": "{{ cookiecutter.use_cgo }}",
       "use_homebrew": "{{ cookiecutter.use_homebrew }}",
+      "use_sqlc": "{{ cookiecutter.use_sqlc }}",
       "go_version": "{{ cookiecutter.go_version }}"
     }
   },
@@ -25,7 +26,9 @@
     ".goreleaser.yaml",
     "cmd",
     "internal",
+    "db",
     "test",
+    "sqlc.yaml",
     "main.go",
     "go.mod",
     "go.sum",

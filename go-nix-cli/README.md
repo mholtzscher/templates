@@ -12,6 +12,7 @@ A [Cookiecutter](https://cookiecutter.readthedocs.io/) template for Go CLI proje
 - **Homebrew**: Automatic tap publishing (optional)
 - **Testing**: E2E testscript test framework
 - **Documentation**: AGENTS.md template for AI coding agents
+- **sqlc**: Optional SQL query code generation (SQLite default)
 
 ## Usage
 
@@ -62,6 +63,7 @@ cruft update
 | `license` | MIT | Project license |
 | `use_cgo` | no | Enable CGO support |
 | `use_homebrew` | yes | Enable Homebrew tap publishing |
+| `use_sqlc` | no | Enable sqlc code generation (adds `just generate`, runs during `just check`) |
 | `go_version` | 1.25 | Go version |
 
 ## Post-Generation Steps
@@ -144,6 +146,7 @@ All projects include a `justfile` with common tasks:
 
 ```bash
 just build          # Development build
+just generate       # Generate code (sqlc, optional)
 just test           # Run tests
 just lint           # Run golangci-lint
 just check          # Run all checks (fmt, vet, lint, test, tidy)

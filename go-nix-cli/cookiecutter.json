@@ -10,10 +10,12 @@
     "license": ["MIT", "Apache-2.0", "BSD-3-Clause", "GPL-3.0", "Proprietary"],
     "use_cgo": ["no", "yes"],
     "use_homebrew": ["yes", "no"],
+    "use_sqlc": ["no", "yes"],
     "go_version": "1.25",
     "_template": "https://github.com/mholtzscher/templates.git",
     "_commit": "{{ cookiecutter._commit | default('unknown') }}",
     "_copy_without_render": [
-        "test/testscript/scripts/*.txtar"
+        "test/testscript/scripts/*.txtar",
+        "db/*.sql"
     ]
 }

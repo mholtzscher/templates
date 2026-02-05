@@ -49,6 +49,11 @@ nix develop
 # Or use direnv
 direnv allow
 
+{% if cookiecutter.use_sqlc == "yes" %}
+# Generate code (sqlc)
+just generate
+
+{% endif %}
 # Run checks
 just check
 
