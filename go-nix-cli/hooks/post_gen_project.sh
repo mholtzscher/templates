@@ -4,6 +4,8 @@
 set -e
 
 PROJECT_DIR="{{ cookiecutter.project_slug }}"
+TEMPLATE_URL="https://github.com/mholtzscher/templates.git"
+TEMPLATE_DIR="go-nix-cli"
 
 {% if cookiecutter.use_sqlc != "yes" %}
 # Remove optional sqlc scaffolding when disabled
@@ -48,3 +50,34 @@ echo "  - just --list            # See all commands"
 echo ""
 echo "See AGENTS.md for AI coding guidelines."
 echo ""
+
+# Initialize cruft for template updates
+if command -v cruft &>/dev/null; then
+    cruft link "$TEMPLATE_URL" --directory "$TEMPLATE_DIR" --no-input 2>/dev/null || true
+    if [ -f ".cruft.json" ]; then
+        python3 -c "
+import json
+with open('.cruft.json', 'r+') as f:
+    data = json.load(f)
+    data['skip'] = [
+        '.github/.release-please-manifest.json',
+        'CHANGELOG.md',
+        'README.md',
+        '.goreleaser.yaml',
+        'cmd',
+        'internal',
+        'db',
+        'test',
+        'sqlc.yaml',
+        'main.go',
+        'go.mod',
+        'go.sum',
+        'gomod2nix.toml',
+        'flake.lock'
+    ]
+    f.seek(0)
+    json.dump(data, f, indent=2)
+    f.truncate()
+"
+    fi
+fi
