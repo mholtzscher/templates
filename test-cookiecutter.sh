@@ -3,7 +3,7 @@
 
 set -e
 
-OUTPUT_DIR="/tmp/cookiecutter-test-$$"
+OUTPUT_DIR=".test-output-$$"
 
 echo "Testing cookiecutter template..."
 echo "Output will be created at: $OUTPUT_DIR"
@@ -30,3 +30,5 @@ echo "✓ Template generated successfully!"
 echo "Output location: $OUTPUT_DIR"
 echo ""
 echo "To clean up: rm -rf $OUTPUT_DIR"
+echo ""
+echo "Add '.test-output-*' to .gitignore to exclude test outputs from git"
