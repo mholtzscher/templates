@@ -5,7 +5,8 @@ A [Cookiecutter](https://cookiecutter.readthedocs.io/) template for Go CLI proje
 ## Features
 
 - **Nix Flake**: Reproducible builds with gomod2nix
-- **Development Environment**: direnv + devShell with Go, golangci-lint, gopls, just
+- **Development Environment**: direnv + devShell with Go, gopls, just
+- **Go-managed Tools**: golangci-lint pinned in `go.mod` via `tool` directive
 - **Task Runner**: justfile with build, test, lint, format tasks
 - **CI/CD**: GitHub Actions for testing and automated releases
 - **Release Management**: release-please + GoReleaser

@@ -71,7 +71,6 @@
           buildInputs = [
             pkgs.go_{{ cookiecutter.go_version | replace('.', '_') }}
             pkgs.gopls
-            pkgs.golangci-lint
             pkgs.gotools
             pkgs.gomod2nix
 {% if cookiecutter.use_sqlc == "yes" %}            pkgs.sqlc
@@ -88,7 +87,6 @@
         devShells.ci = pkgs.mkShell {
           buildInputs = [
             pkgs.go_{{ cookiecutter.go_version | replace('.', '_') }}
-            pkgs.golangci-lint
 {% if cookiecutter.use_sqlc == "yes" %}            pkgs.sqlc
 {% endif %}            pkgs.just
           ]
