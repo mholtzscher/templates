@@ -13,8 +13,8 @@ permissions:
 
 jobs:
   nix-check:
-    name: Nix Check (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
+    name: Nix Check ({% raw %}${{ matrix.os }}{% endraw %})
+    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
     strategy:
       fail-fast: false
       matrix:
