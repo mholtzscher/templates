@@ -50,7 +50,7 @@ generate:
     sqlc generate
 
 {% endif %}# Run all checks ({% if cookiecutter.use_sqlc == "yes" %}generate, {% endif %}format, vet, lint, test, tidy, gomod2nix)
-check:{% if cookiecutter.use_sqlc == "yes" %} generate{% endif %} fmt vet lint test tidy gomod2nix
+check: tidy gomod2nix {% if cookiecutter.use_sqlc == "yes" %}generate{% endif %} fmt vet lint test 
 
 # Update Go dependencies
 update-deps:
