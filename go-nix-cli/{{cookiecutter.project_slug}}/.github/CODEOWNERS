@@ -1,0 +1,5 @@
+# Default owner for all files
+* @{{ cookiecutter.github_owner }}
+
+# GitHub-specific config
+.github/ @{{ cookiecutter.github_owner }}
